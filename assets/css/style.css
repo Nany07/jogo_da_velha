@@ -1,1 +1,26 @@
 
+body{
+    justify-items: center;
+}
+
+.quadrado{
+    display: flex;
+    flex-direction: row;
+}
+
+.quadrado div{
+    text-align: center;
+    align-content: center;
+    background-color: lightgrey;
+    margin: .4rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+section{
+    margin: .6rem;
+}
+
+section div{
+    margin: .4rem;
+}
