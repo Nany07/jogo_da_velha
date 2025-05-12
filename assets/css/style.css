@@ -3,12 +3,12 @@ body{
     justify-items: center;
 }
 
-.quadrado{
+.linha{
     display: flex;
     flex-direction: row;
 }
 
-.quadrado div{
+.linha div{
     text-align: center;
     align-content: center;
     background-color: lightgrey;
