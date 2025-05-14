@@ -19,6 +19,7 @@
     let able=true;
 
     for(let quadrado of quadrados){
+        quadrado.style.cursor="pointer";
         quadrado.addEventListener('click', function(){           
             if(able && quadrado.innerHTML===""){
                 quadrado.innerHTML= jogador? "X":"O";
@@ -29,8 +30,15 @@
                 if (verificar_vitoria(jogador)){
                     vencedor.innerHTML=jogador?"X":"O";
                     simbolo_jogador.innerHTML="";
-                    able=false;
-                } else
+                    for(let quadrado of quadrados)
+                        quadrado.style.cursor="default";
+                    able=false;                
+                } else if (!tabuleiro.includes('')){
+                    vencedor.innerHTML= "Empate!";
+                    simbolo_jogador.innerHTML="";
+                    for(let quadrado of quadrados)  
+                        quadrado.style.cursor="default";
+                }else
                     jogador = !jogador;
             }
         })
@@ -45,7 +53,8 @@
         for(let quadrado of quadrados){
             quadrado.innerHTML="";
             quadrado.style.background="lightgrey";
-            tabuleiro[Number(quadrado.id)]='';
+            quadrado.style.cursor="pointer";
+            tabuleiro[Number(quadrado.id)]="";
         }
     })
 
