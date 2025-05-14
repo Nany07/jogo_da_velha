@@ -15,32 +15,23 @@
         [2,4,6], // diagonal /
     ];
 
-    let tabuleiro = Array(8).fill('');
+    let tabuleiro = Array(9).fill('');
     let able=true;
 
     for(let quadrado of quadrados){
         quadrado.addEventListener('click', function(){           
-            if(able){
-                //jogador 1
-                if(quadrado.innerHTML==="" && jogador === true){
-                    quadrado.innerHTML= "X";
-                    quadrado.style.background="lightblue";
-                    tabuleiro[quadrado.id]=true;
-                    simbolo_jogador.innerHTML="O";
-                }
-                //jogador 2 
-                if (quadrado.innerHTML==="" && jogador === false){
-                    quadrado.innerHTML= "O";
-                    tabuleiro[quadrado.id]=false;
-                    simbolo_jogador.innerHTML="X";
-                }
-    
+            if(able && quadrado.innerHTML===""){
+                quadrado.innerHTML= jogador? "X":"O";
+                quadrado.style.background=jogador?"lightblue":"lightcoral";
+                tabuleiro[Number(quadrado.id)]=jogador;
+                simbolo_jogador.innerHTML=jogador?"O":"X";
+                
                 if (verificar_vitoria(jogador)){
-                    vencedor.innerHTML=quadrado.innerHTML;
+                    vencedor.innerHTML=jogador?"X":"O";
                     simbolo_jogador.innerHTML="";
                     able=false;
-                }
-                jogador = !jogador;
+                } else
+                    jogador = !jogador;
             }
         })
     }
@@ -54,7 +45,7 @@
         for(let quadrado of quadrados){
             quadrado.innerHTML="";
             quadrado.style.background="lightgrey";
-            tabuleiro[quadrado.id]='';
+            tabuleiro[Number(quadrado.id)]='';
         }
     })
 
