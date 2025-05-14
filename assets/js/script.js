@@ -16,36 +16,45 @@
     ];
 
     let tabuleiro = Array(8).fill('');
+    let able=true;
 
     for(let quadrado of quadrados){
         quadrado.addEventListener('click', function(){           
-            //jogador 1
-            if(quadrado.innerHTML==="" && jogador === true){
-                quadrado.innerHTML= "X";
-                quadrado.style.background="lightblue";
-                tabuleiro[quadrado.id]=true;
-                simbolo_jogador.innerHTML="O";
+            if(able){
+                //jogador 1
+                if(quadrado.innerHTML==="" && jogador === true){
+                    quadrado.innerHTML= "X";
+                    quadrado.style.background="lightblue";
+                    tabuleiro[quadrado.id]=true;
+                    simbolo_jogador.innerHTML="O";
+                }
+                //jogador 2 
+                if (quadrado.innerHTML==="" && jogador === false){
+                    quadrado.innerHTML= "O";
+                    tabuleiro[quadrado.id]=false;
+                    simbolo_jogador.innerHTML="X";
+                }
+    
+                if (verificar_vitoria(jogador)){
+                    vencedor.innerHTML=quadrado.innerHTML;
+                    simbolo_jogador.innerHTML="";
+                    able=false;
+                }
+                jogador = !jogador;
             }
-            //jogador 2 
-            if (quadrado.innerHTML==="" && jogador === false){
-                quadrado.innerHTML= "O";
-                tabuleiro[quadrado.id]=false;
-                simbolo_jogador.innerHTML="X";
-            }
-
-            if (verificar_vitoria(jogador)){
-                vencedor.innerHTML=quadrado.innerHTML;
-            }
-            jogador = !jogador;
         })
     }
 
     button.addEventListener('click',function(){
         simbolo_jogador.innerHTML="X";
+        vencedor.innerHTML="";
+        jogador=true;
+        able=true;
 
         for(let quadrado of quadrados){
             quadrado.innerHTML="";
             quadrado.style.background="lightgrey";
+            tabuleiro[quadrado.id]='';
         }
     })
 
