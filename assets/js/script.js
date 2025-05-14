@@ -53,6 +53,7 @@
         for(let quadrado of quadrados){
             quadrado.innerHTML="";
             quadrado.style.background="lightgrey";
+            quadrado.style.border="";
             quadrado.style.cursor="pointer";
             tabuleiro[Number(quadrado.id)]="";
         }
@@ -63,6 +64,9 @@
         for(let combinacao of combinacoes_vencedoras){
             const [a,b,c]= combinacao;
             if( tabuleiro[a]=== jogador && tabuleiro[b] === jogador  && tabuleiro[c] === jogador ){
+                quadrados[a].style.border="3px solid gold";
+                quadrados[b].style.border="3px solid gold";
+                quadrados[c].style.border="3px solid gold";
                 return true;
             }
         }
